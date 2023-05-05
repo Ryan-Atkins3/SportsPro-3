@@ -1,0 +1,19 @@
+﻿@model Product
+@{
+	string title = ViewBag.Action + " Product";
+	ViewData["Title"] = title + " - SportsPro";
+	Layout = "_Layout";
+}
+
+<div>
+	<h1>@ViewBag.Title</h1>
+
+	<h2 class="text-muted">Are you sure you want to delete @Model.ProductName?</h2>
+
+	<form asp-action="Delete" method="post" class="mt-2">
+		<button type="submit" class="btn btn-outline-danger me-2">Yes</button>
+		<a asp-action="Index" class="btn btn-outline-secondary">No</a>
+		<input type="hidden" asp-for="ProductId"/>
+	</form>
+	
+</div>

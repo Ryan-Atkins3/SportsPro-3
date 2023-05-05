@@ -1,0 +1,30 @@
+﻿@model Technician
+@{
+    string title = ViewBag.Action + " Technician";
+    ViewData["Title"] = title + " - SportsPro";
+    Layout = "_Layout";
+}
+
+
+<div>
+
+    <h1>@title</h1>
+    <div asp-validation-summary="All"></div>
+    <form asp-action="Edit" method="post">
+        <label asp-for="TechnicianName" class="form-label">Name</label>
+        <input asp-for="TechnicianName" class="form-control" />
+
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+
+        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-outline-primary">@ViewBag.Action</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+        <input type="hidden" asp-for="TechnicianId" />
+    </form>
+
+</div>

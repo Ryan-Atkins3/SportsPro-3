@@ -1,0 +1,24 @@
+﻿@model RegistrationViewModel
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "_Layout";
+}
+
+<div>
+    <h1>Get Customer</h1>
+
+    <form asp-action="List" method="post">
+        <select asp-for="customer.CustomerId" class="form-select">
+            <option value="0">Select Customer...</option>
+            @foreach(Customer c in Model.Customers)
+            {
+                <option value="@c.CustomerId">@c.FirstName @c.LastName</option>
+            }
+        </select>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-outline-primary">Select</button>
+        </div>
+    </form>
+</div>
+
+@*//asp-items="@(new SelectList(ViewBag.Countries, "CountryId", "CountryName"))" *@

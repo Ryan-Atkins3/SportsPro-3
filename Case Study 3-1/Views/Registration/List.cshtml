@@ -1,0 +1,60 @@
+﻿@model RegistrationViewModel
+@{
+    ViewData["Title"] = "Registrations - SportsPro";
+    Layout = "_Layout";
+}
+
+<div>
+    <div class="mb-3">
+        <h1>Customer: @Model.customer.FirstName @Model.customer.LastName <br /> Regisrations</h1>
+    </div>
+    @if (Model.customerProducts.Count() > 0)
+    {
+        <div class="mb-3">
+            <form method="post" asp-action="Delete">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Product p in Model.customerProducts)
+                        {
+                            <tr>
+                                <td>@p.ProductName</td>
+                                <td><button type="submit" class="btn btn-outline-danger">Delete</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>@Model.customer.FirstName has no products registered.</p>
+        </div>
+    }
+    <div class="mb-3">
+        <h2 class="fs-1 mb-3">Product</h2>
+
+        <form method="post" asp-action="Register">
+            <select asp-for="product.ProductId" class="form-select">
+                <option value="0">Select Product. . .</option>
+                @foreach (Product prod in Model.products)
+                {
+                    <option value="@prod.ProductId">@prod.ProductName</option>
+                }
+            </select>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-outline-primary">Register</button>
+            </div>
+            <input type="hidden" name="custId" value="@Model.customer.CustomerId"/>
+        </form>
+    </div>
+
+</div>

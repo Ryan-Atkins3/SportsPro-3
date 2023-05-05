@@ -1,0 +1,18 @@
+﻿@model Technician
+@{
+    string title = "Delete Technician";
+    ViewData["Title"] = title + " - SportsPro";
+    Layout = "_Layout";
+}
+<div class="Delete ">
+    <h1>@title</h1>
+
+    <div>
+        <h2 class="text-muted">Are you sure you want to delete technician @Model.TechnicianName?</h2>
+        <form method="post" asp-action="Delete">
+            <button type="submit" class="btn btn-outline-danger">Yes</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">No</a>
+            <input type="hidden" asp-for="TechnicianId" />
+        </form>
+    </div>
+</div>

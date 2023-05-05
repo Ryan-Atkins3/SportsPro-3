@@ -1,0 +1,54 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "_Layout";
+}
+
+<div>
+    <h1 class="mb-3">LogIn</h1>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="LogIn" method="post"
+          asp-route-returnUrl="@Model.ReturnUrl">
+        <div class=" row mb-2">
+            <label class="col-form-label col-md-2">Username:</label>
+            <div class="col-md-4">
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <div>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class=" row mb-2">
+            <label class="col-form-label col-md-2">Password:</label>
+            <div class="col-md-4">
+                <input type="password" asp-for="Password" class="form-control" />
+            </div>
+            <div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <div class=" row mb-2">
+            <div class="col offset-md-2">
+                <input type="checkbox" title="Remember me!" asp-for="RememberMe" class="form-check-inline" />
+                <label>Remember Me</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col offset-md-2">
+                Not Registered?
+                <a asp-action="Register">Register as a new user</a>
+            </div>
+        </div>
+    </form>
+</div>

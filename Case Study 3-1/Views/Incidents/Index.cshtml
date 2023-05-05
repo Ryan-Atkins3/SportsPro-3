@@ -1,0 +1,44 @@
+﻿@model IncidentsViewModel
+@{
+    ViewData["Title"] = "Incidents";
+    Layout = "_Layout";
+}
+<div>
+    <h1>Incident Manager</h1>
+    <div>
+		@*filters*@
+		<div class="mb-2">
+			<a asp-route-id="" class="btn btn-primary">All Incidents</a>
+			<a asp-route-id="Un" class="btn btn-primary">Unassigned Incidents</a>
+			<a asp-route-id="Op" class="btn btn-primary">Open Incidents</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Customer</th>
+					<th>Product</th>
+					<th>Date Opened</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var i in Model.Incidents)
+				{
+					<tr>
+						<td>@i.Title</td>
+						<td>@i.Customer.FirstName @i.Customer.LastName</td>
+						<td>@i.Product.ProductName</td>
+						<td>@i.DateOpened.ToShortDateString()</td>
+						<td><a asp-action="Edit" asp-route-id="@i.IncidentId" class="btn btn-outline-primary">Edit</a></td>
+						<td><a asp-action="Delete" asp-route-id="@i.IncidentId" class="btn btn-outline-danger">Delete</a></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div>
+			<a class="btn btn-outline-primary" asp-action="Add">Add New Incident</a>
+		</div>
+    </div>
+</div>
